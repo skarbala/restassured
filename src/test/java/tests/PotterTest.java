@@ -90,6 +90,7 @@ public class PotterTest {
             .queryParam("key", API_KEY)
             .when().get().then().extract().body().as(Spell[].class));
         spellArray.forEach(spell -> assertThat(spell.getEffect(), is(not(emptyOrNullString()))));
+        spellArray.forEach(spell -> assertThat(spell.getSpell(), is(not(emptyOrNullString()))));
     }
 
     @Test
