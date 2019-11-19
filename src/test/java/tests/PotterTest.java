@@ -94,7 +94,7 @@ public class PotterTest {
 
     @Test
     public void listCharacters() throws CharacterNotFoundException {
-        String characterToFind = "Draco Malfoy";
+        String characterToFind = "Albus Dumbledore";
         RestAssured.basePath = "/characters";
 
         List<HashMap<String, String>> characters =
