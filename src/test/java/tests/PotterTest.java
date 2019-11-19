@@ -114,5 +114,27 @@ public class PotterTest {
             .then().body("deathEater", is(true));
     }
 
+    @Test
+    public void itShouldFindHarry() throws CharacterNotFoundException {
+        String characterToFind = "Harry Potter";
+        RestAssured.basePath = "/characters";
+
+        List<HashMap<String, String>> characters =
+            given().queryParam("key", API_KEY)
+                .when().get()
+                .then().extract().response().getBody().jsonPath().get();
+
+        String characterId = characters
+            .stream()
+            .filter(character -> character.get("name").equals(characterToFind))
+            .findFirst()
+            .orElseThrow(() -> new CharacterNotFoundException(characterToFind))
+            .get("_id");
+
+        given().queryParam("key", API_KEY).pathParam("characterId", characterId)
+            .when().get("/{characterId}")
+            .then().body("deathEater", is(false));
+    }
+
 
 }
