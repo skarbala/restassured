@@ -1,0 +1,17 @@
+{
+  "title": "Spell set",
+  "type": "array",
+  "items": {
+    "title": "Spell",
+    "type": "object",
+    "required": ["_id", "spell", "effect"],
+    "properties": {
+      "_id": {
+        "type": "string"
+      },
+      "effect": {
+        "type": "string"
+      }
+    }
+  }
+}
