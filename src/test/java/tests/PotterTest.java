@@ -111,7 +111,7 @@ public class PotterTest {
 
         given().queryParam("key", API_KEY).pathParam("characterId", characterId)
             .when().get("/{characterId}")
-            .then().body("deathEater", is(true));
+            .then().body("deathEater", is(false));
     }
 
     @Test
