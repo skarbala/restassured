@@ -101,6 +101,8 @@ public class PotterTest {
     }
 
     @Test
+    @Flaky
+    @DisplayName("Find Albus Dumbledore")
     public void listCharacters() throws CharacterNotFoundException {
         String characterToFind = "Albus Dumbledore";
         RestAssured.basePath = "/characters";
