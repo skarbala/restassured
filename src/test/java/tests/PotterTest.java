@@ -1,19 +1,23 @@
 package tests;
 
 import exceptions.CharacterNotFoundException;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import models.Spell;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -28,20 +32,23 @@ public class PotterTest {
     }
 
     @Test
+    @Description("Some detailed test description")
+    @Severity(SeverityLevel.BLOCKER)
     public void spellServiceShouldBeAlive() {
         given()
             .queryParam("key", API_KEY)
             .basePath("/spells")
             .when().get()
             .then().statusCode(200)
-            .and().contentType(JSON)
-            .body(matchesJsonSchemaInClasspath("spell_schema.json"));
+            .and().contentType(JSON);
     }
 
+
     @Test
+    @Severity(SeverityLevel.TRIVIAL)
     public void itShouldReturn409WhenKeyIsNotFound() {
         given().queryParam("key", "INVALID")
-            .basePath("/spells")
+            .basePath("/spellss")
             .when().get()
             .then().statusCode(401)
             .contentType(JSON)
@@ -137,5 +144,12 @@ public class PotterTest {
             .then().body("deathEater", is(false));
     }
 
-
+    @Test
+    public void itShouldReturnDataMatchingTheSchema() {
+        given()
+            .basePath("/spells")
+            .queryParam("key", API_KEY)
+            .when().get()
+            .then().body(matchesJsonSchema(new File("src/test/resources/schemas/spell_schema.json")));
+    }
 }

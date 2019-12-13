@@ -1,0 +1,60 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "array",
+  "title": "The Root Schema",
+  "items": {
+    "$id": "#/items",
+    "type": "object",
+    "title": "The Items Schema",
+    "required": [
+      "_id",
+      "spell",
+      "type",
+      "effect"
+    ],
+    "properties": {
+      "_id": {
+        "$id": "#/items/properties/_id",
+        "type": "string",
+        "title": "The _id Schema",
+        "default": "",
+        "examples": [
+          "5b74ebd5fb6fc0739646754c"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "spell": {
+        "$id": "#/items/properties/spell",
+        "type": "string",
+        "title": "The Spell Schema",
+        "default": "",
+        "examples": [
+          "Aberto"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "type": {
+        "$id": "#/items/properties/type",
+        "type": "string",
+        "title": "The Type Schema",
+        "default": "",
+        "examples": [
+          "Charm"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "effect": {
+        "$id": "#/items/properties/effect",
+        "type": "string",
+        "title": "The Effect Schema",
+        "default": "",
+        "examples": [
+          "opens objects"
+        ],
+        "pattern": "^(.*)$"
+      }
+    }
+  }
+}
