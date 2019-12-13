@@ -105,10 +105,7 @@ public class PotterTest {
         String characterToFind = "Albus Dumbledore";
         RestAssured.basePath = "/characters";
 
-        List<HashMap<String, String>> characters =
-            given().queryParam("key", API_KEY)
-                .when().get()
-                .then().extract().response().getBody().jsonPath().get();
+        List<HashMap<String, String>> characters = getCharacters();
 
         String characterId = characters
             .stream()
@@ -120,6 +117,13 @@ public class PotterTest {
         given().queryParam("key", API_KEY).pathParam("characterId", characterId)
             .when().get("/{characterId}")
             .then().body("deathEater", is(false));
+    }
+
+    @Step("Getting characters")
+    private List<HashMap<String, String>> getCharacters() {
+        return given().queryParam("key", API_KEY)
+            .when().get()
+            .then().extract().response().getBody().jsonPath().get();
     }
 
     @Test
