@@ -1,9 +1,7 @@
 package tests;
 
 import exceptions.CharacterNotFoundException;
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.*;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import models.Spell;
@@ -22,6 +20,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+@Epic("Potter API")
+@Feature("Spell service")
 public class PotterTest {
 
     private static final String API_KEY = "$2a$10$f.wBgzvPPpAvJi0D1d1MOOC/uTEqHWqG6tGxfa/i2u.7ob7O9JGla";
