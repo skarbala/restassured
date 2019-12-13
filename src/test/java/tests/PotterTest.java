@@ -48,7 +48,7 @@ public class PotterTest {
     @Severity(SeverityLevel.TRIVIAL)
     public void itShouldReturn409WhenKeyIsNotFound() {
         given().queryParam("key", "INVALID")
-            .basePath("/spellss")
+            .basePath("/spells")
             .when().get()
             .then().statusCode(401)
             .contentType(JSON)
